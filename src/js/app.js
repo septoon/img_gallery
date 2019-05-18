@@ -27,6 +27,10 @@ const getImg = () => {
     imagesWrapper.appendChild(div);
     div.appendChild(img);
   };
+  div.addEventListener('click', () => {
+    img.parentNode.removeChild(img);
+    div.parentNode.removeChild(div);
+  });
 
   img.onerror = () => {
     if (inputUrl.value.search('http:\\/\\/\\S+\\.[jJ][pP][eE]?[gG]') === -1) {
@@ -49,11 +53,4 @@ inputUrl.addEventListener('keypress', (event) => {
 addBtn.addEventListener('click', (event) => {
   event.preventDefault();
   getImg();
-});
-
-imagesWrapper.addEventListener('click', (event) => {
-  if (event.toElement.className === 'deleteBtn') {
-    const img = document.getElementById(event.toElement.parentElement.id);
-    img.parentNode.removeChild(img);
-  }
 });
